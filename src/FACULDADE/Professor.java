@@ -1,26 +1,28 @@
 package FACULDADE;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Professor extends Pessoa{
     private String departamento;
     private List<String> disciplinasMinistradas;
 
-    public Professor(String nome, String endereco, String departamento, List<String> disciplinasMinistradas) {
+    public Professor(String nome, String endereco, String departamento ) {
         super(nome, endereco);
         this.departamento = departamento;
-        this.disciplinasMinistradas = disciplinasMinistradas;
+        this.disciplinasMinistradas = new ArrayList<>();
+
     }
 
     @Override
-    public void apresentar(){
-        System.out.println("-- INFORMAÇÕES DO PROFESSOR --"+"\n"+
+    public String apresentar(){
+        return ("-- INFORMAÇÕES DO PROFESSOR --"+"\n"+
                 "Nome: "+this.getNome()+"\n"+
                 "Departamento: "+ this.getDepartamento()+"\n"+
-                "Disciplinas Ministradas: "+ this.getDisciplinasMinistradas()+"\n");
+                "Disciplinas Ministradas: "+ this.getDisciplinasMinistradas()+"\n"+"-------------");
     }
 
     public void adicionarDisciplina(Disciplina disciplina){
-        getDisciplinasMinistradas().add(disciplina.getNome());
+        this.disciplinasMinistradas.add(disciplina.getNome());
 
     }
 

@@ -1,47 +1,41 @@
 package FACULDADE;
 
-import FACULDADE.Curso;
-import FACULDADE.Pessoa;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Aluno extends Pessoa {
     private String matricula;
     private Curso curso;
-    private List<Float> notas;
+    private float media;
+    private boolean mediaCalculada;
+    private String tipo;
 
     public Aluno(String nome, String endereco, String matricula, Curso curso) {
         super(nome, endereco);
         this.matricula = matricula;
         this.curso = curso;
-        this.notas = new ArrayList<>(); // Inicializando a lista de notas
+        setMediaCalculada(false);
+        this.tipo = "Aluno";
     }
 
-    public void calcularMedia() {
-        System.out.println("Quantas notas serão calculadas? ");
-        Scanner scanner = new Scanner(System.in);
-        int soma= 0;
-        int qntdNota = Integer.parseInt(scanner.nextLine());
-        for (int i = 0; i < qntdNota; i++) {
-            System.out.println("Nota " + (i + 1) + ": ");
-            float nota = Float.parseFloat(scanner.nextLine());
-            this.notas.add(nota);
-        }
-        for (float numero : this.notas) {
-            soma += numero;
-        }
-        float media = (float) soma / notas.size();
-        System.out.println("A media de "+this.getNome()+": "+media);
+    public float calcularMedia(float nota1, float nota2, float nota3) {
+        setMediaCalculada(true);
+        this.media = (nota1 + nota2 + nota3)/3;
+        return this.media;
     }
 
     @Override
-    public void apresentar() {
-        System.out.println("--INFORMAÇÕES DE ALUNO--" + "\n" +
+    public String apresentar() {
+        String iMedia;
+        if (isMediaCalculada()){
+           iMedia = "Media do Aluno: "+ getMedia();
+        }else {
+            iMedia = "Media ainda não disponivel";
+        }
+        return ("--INFORMAÇÕES DE "+this.tipo+"--" + "\n" +
                 "Nome: " + this.getNome() + "\n" +
                 "Matricula: " + this.getMatricula() + "\n" +
-                "Curso: " + this.getCurso().getNome() + "\n");
+                "Curso: " + this.getCurso().getNome() + "\n" + iMedia + "\n"+"---------------");
     }
 
     public String getMatricula() {
@@ -60,11 +54,27 @@ public class Aluno extends Pessoa {
         this.curso = curso;
     }
 
-    public List<Float> getNotas() {
-        return notas;
+    public float getMedia() {
+        return media;
     }
 
-    public void setNotas(List<Float> notas) {
-        this.notas = notas;
+    public void setMedia(float media) {
+        this.media = media;
+    }
+
+    public boolean isMediaCalculada() {
+        return mediaCalculada;
+    }
+
+    public void setMediaCalculada(boolean mediaCalculada) {
+        this.mediaCalculada = mediaCalculada;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

@@ -1,6 +1,6 @@
 package FACULDADE;
 
-public class Disciplina {
+public class Disciplina implements Acao {
     private String nome;
     private String codigo;
     private int cargaHoraria;
@@ -13,12 +13,14 @@ public class Disciplina {
         this.professorResponsavel = professorResponsavel;
     }
 
-    public void apresentar(){
-        System.out.println("-- INFORMAÇÕES DA DISCIPLINA --"+"\n"+
+    @Override
+    public String apresentar(){
+        return ("-- INFORMAÇÕES DA DISCIPLINA --"+"\n"+
                     "Nome: "+ this.getNome()+"\n"+
                     "Codigo: "+this.getCodigo()+"\n"+
                     "Carga Horaria: "+ this.getCargaHoraria()+"\n"+
-                    "Professor Responsavel: "+this.getProfessorResponsavel()+"\n");
+                    "Professor Responsavel: "+this.getProfessorResponsavel().getNome()+
+                "\n"+"----------------");
     }
 
     public String getNome() {

@@ -1,6 +1,6 @@
 package FACULDADE;
 
-public abstract class Pessoa {
+public abstract class Pessoa implements Acao {
     protected String nome;
     protected String endereco;
 
@@ -9,7 +9,8 @@ public abstract class Pessoa {
         this.endereco = endereco;
     }
 
-    public abstract void apresentar();
+    @Override
+    public abstract String apresentar();
 
     public String getNome() {
         return nome;
