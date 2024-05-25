@@ -28,10 +28,5 @@ public abstract class Pessoa implements Acao {
         this.endereco = endereco;
     }
 
-    public String toString() {
-        return "Pessoa{" +
-                "nome='" + nome + '\'' +
-                ", endereco='" + endereco + '\'' +
-                '}';
-    }
+
 }
